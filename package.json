@@ -19,6 +19,8 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "express": "^4.17.1",
+    "npm-travis": "^1.0.2",
+    "ruby": "^0.6.1",
     "rxjs": "~6.6.0",
     "travis-cli": "^1.0.9",
     "tslib": "^2.2.0",
