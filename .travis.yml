@@ -15,4 +15,4 @@ deploy:
   provider: heroku
   app: mysteampro
   api_key:
-    secure: travis encrypt $(heroku auth:token) --add deploy.api_key
+    secure: '08077cbf-1def-41b0-a308-ea44b4477d20'
