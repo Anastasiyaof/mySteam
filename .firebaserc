@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mysteam-ccaa0": {
+      "hosting": {
+        "mySteam": [
+          "mysteam-ccaa0"
+        ]
+      }
+    }
+  }
+}
