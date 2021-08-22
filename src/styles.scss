@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    margin: 0;
+    background-image: url(./assets/colored_body_top.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    color: white;
+}
