@@ -6,7 +6,9 @@ const { gamesController } = require('./src/app/controllers/games.controller')
 
 
 app.use(express.static(__dirname + '/dist/mySteam'));
-app.use(express.json());
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/dist/itea-project/index.html'));
+});
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/mySteam/index.html'));
