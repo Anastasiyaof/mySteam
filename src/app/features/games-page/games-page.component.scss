@@ -1,0 +1,9 @@
+.card-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 5%;
+    .card {
+        width: 460px;
+    }
+}

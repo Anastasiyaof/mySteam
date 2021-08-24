@@ -1,10 +1,8 @@
 <div class="form-wrapp">
     <form [formGroup]="loginForm">
         <h2>Sign in</h2>
-        <div>
-            <label 
-            [ngClass]="{invalid: loginForm.get('email')?.touched && loginForm.get('email')?.invalid}"
-            for="email">Email</label>
+        <div class="input-wrap">
+            <label for="email">Email</label>
             <input id="email" type="email" placeholder="Email" formControlName="email">
             <div 
             *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid"
@@ -13,10 +11,8 @@
                 <small>Email is required</small>
             </div>
         </div>
-        <div>
-            <label 
-            [ngClass]="{invalid:loginForm.get('password')?.touched && loginForm.get('password')?.invalid}"
-            for="password">Password</label>
+        <div class="input-wrap">
+            <label for="password">Password</label>
             <input id="password" type="password" placeholder="Password" formControlName="password">
             <div
             *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid"
