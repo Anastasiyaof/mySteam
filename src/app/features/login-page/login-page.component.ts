@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -8,11 +10,27 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPageComponent implements OnInit {
   public loginForm!: FormGroup
+  public submitted = false
+  public infoMessage!: string
 
-  constructor() { }
+  constructor(
+    public auth: AuthService, 
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   submit() {
-    console.log(this.loginForm)
+    if(this.loginForm.invalid) {
+      return
+    }
+    this.submitted = true
+
+    this.auth.login(this.loginForm.value).subscribe(()=> {
+      this.loginForm.reset()
+      this.router.navigate(['/main','games'])
+      this.submitted = false
+    },
+    () => this.submitted = false)
   }
 
   initForm() :void {
@@ -23,6 +41,13 @@ export class LoginPageComponent implements OnInit {
   } 
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params: Params)=> {
+      if(params['authentication']) {
+        this.infoMessage = 'Please sign in'
+      } else if(params['authFailed']) {
+        this.infoMessage = 'Session expired. Please sign in '
+      }
+    })
     this.initForm()
   }
 

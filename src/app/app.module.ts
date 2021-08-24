@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,14 @@ import { FriendsPageComponent } from './features/friends-page/friends-page.compo
 import { GamesPageComponent } from './features/games-page/games-page.component';
 import { MainLayoutComponent } from './shered/main-layout/main-layout.component';
 import { LibraryPageComponent } from './features/library-page/library-page.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shered/auth.interceptor';
+
+const INTERSEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+}
 
 @NgModule({
   declarations: [
@@ -30,9 +38,10 @@ import { LibraryPageComponent } from './features/library-page/library-page.compo
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [INTERSEPTOR_PROVIDER],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

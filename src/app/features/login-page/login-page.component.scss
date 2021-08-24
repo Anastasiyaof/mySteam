@@ -1,0 +1,26 @@
+:host {
+    display: grid;
+    height: 100vh;
+    place-items: center;
+    --invalid-color: red;
+}
+
+.form-wrapp{
+    width: 30%;
+    height: 30%;
+    display: grid;
+    justify-items: center;
+
+    form {
+        display: grid;
+        padding: 5%;
+        width: 100%;
+        background: black;
+        h2 {
+            text-align: center;
+        }
+    }
+    .invalid {
+        color: var(--invalid-color)
+    }
+}

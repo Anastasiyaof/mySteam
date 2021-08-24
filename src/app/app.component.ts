@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +9,14 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   
-  noLogged = false
-
-  constructor( private readonly route: Router) {}
+  constructor( private readonly route: Router, private auth: AuthService) {}
 
   ngOnInit(): void {
-    if(this.noLogged) {
-      this.route.navigate(['/login'])
-    } else {
-      this.route.navigate(['/main'])
-    }
+    // if(this.auth.isAuthenticated()) {
+    //   this.route.navigate(['/main'])
+    // } else {
+    //   this.route.navigate(['/login'],{ queryParams: { order: 'popular' } })
+    // }
   }
   
 }

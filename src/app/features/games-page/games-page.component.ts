@@ -1,14 +1,11 @@
- import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Game } from 'src/app/models/game.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { GamesService } from 'src/app/services/games.service';
 
 
-
-export interface Game {
-  id?: string,
-  name: string,
-  bought: boolean
-}
 @Component({
   selector: 'app-games-page',
   templateUrl: './games-page.component.html',
@@ -16,11 +13,14 @@ export interface Game {
 })
 export class GamesPageComponent implements OnInit {
 
-  games$ = this.store.collection('games').valueChanges({idField: "id"}) as Observable<Game[]>
-  constructor(private store: AngularFirestore ) { }
+  public games$!: Observable<any>
 
-  ngOnInit(): void {
+  constructor(private gameService: GamesService) {}
+
+  ngOnInit() {
+    this.games$ = this.gameService.getAll()
     console.log(this.games$.subscribe(console.log))
   }
+
 
 }
