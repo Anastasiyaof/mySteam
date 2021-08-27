@@ -15,6 +15,11 @@ import { MainLayoutComponent } from './shered/main-layout/main-layout.component'
 import { LibraryPageComponent } from './features/library-page/library-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shered/auth.interceptor';
+import { SearchPipe } from './pipes/search.pipe';
+import { PriceFilterPipe } from './pipes/price-filter.pipe';
+import { TagFilterPipe } from './pipes/tag-filter.pipe';
+import { FilterByIdPipe } from './pipes/filter-by-id.pipe';
+import { UserSearchPipe } from './pipes/user-search.pipe';
 
 const INTERSEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -30,7 +35,12 @@ const INTERSEPTOR_PROVIDER: Provider = {
     FriendsPageComponent,
     GamesPageComponent,
     MainLayoutComponent,
-    LibraryPageComponent
+    LibraryPageComponent,
+    SearchPipe,
+    PriceFilterPipe,
+    TagFilterPipe,
+    FilterByIdPipe,
+    UserSearchPipe
   ],
   imports: [
     BrowserModule,

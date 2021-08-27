@@ -1,1 +1,41 @@
-<p>friends-page works!</p>
+<div>
+    <h2>{{currentUser.username}}</h2>
+
+    <hr>
+
+    <div>
+        <input type="search" placeholder="Search for new friends"[(ngModel)]="search">
+    </div>
+    <div *ngIf="!search.trim() else serchFriends" class="friends-wrapp">
+        <div>
+            <h2>Friends</h2>
+            <div *ngFor="let user of users">
+                <div>
+                    <p *ngIf="userFriends.includes(+user.id)">{{user.username}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2>Invites</h2>
+            <div *ngIf="currentUser.invites else noInvites">
+                <div *ngFor="let user of users">
+                    <p *ngIf="userInvites.includes(+user.id)">{{user.username}}</p>
+                </div>
+            </div>
+            <ng-template #noInvites>
+                <p>No new invites</p>
+            </ng-template>
+
+        </div>
+    </div>
+
+    <ng-template #serchFriends>
+        <div *ngFor="let user of users | userSearch:search">
+            <div *ngIf="!currentUser.friends?.includes(+user.id)">
+                <p>{{user.username}}</p>
+            </div>
+        </div>
+    </ng-template>
+
+</div>

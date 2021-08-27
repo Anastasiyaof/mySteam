@@ -1,1 +1,22 @@
-<p>library-page works!</p>
+<div *ngIf="games$ | async as games" class="card-wrap">
+    <div *ngIf="games.length > 0 else noGames"></div>
+    <div *ngFor="let game of games" class="card">
+        <h2> {{game.name}} </h2>
+        <div>
+            <img src={{game.icon}}>
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate commodi sequi, repellendus
+            quam
+            neque ad earum deserunt sed veniam id officiis soluta provident maiores excepturi ipsa quibusdam
+            enim
+            eveniet?</p>
+        <div>
+            <button>Shere</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #noGames>
+    <p>You did`t add any game to your library :(</p>
+    <button (click)="toGamesPage()">Choose some</button>
+</ng-template>

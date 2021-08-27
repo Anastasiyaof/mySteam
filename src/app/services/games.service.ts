@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, reduce, scan } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { Game } from '../models/game.model';
@@ -26,5 +26,18 @@ export class GamesService {
         })
       )
   }
+
+  public getMaxPrice(): Observable<number> {
+    return this.getAll().pipe(
+      
+      map((games)=> {
+      return games.reduce((maxPrice:number,game: Game) =>{
+        if(+game.price > maxPrice) {
+         maxPrice = +game.price
+        }
+        return maxPrice
+      },0)
+    })
+  )}
 }
 

@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Game } from 'src/app/models/game.model';
-import { AuthService } from 'src/app/services/auth.service';
 import { GamesService } from 'src/app/services/games.service';
+import { GAMES_TAGS } from '../constants/constants';
+
 
 
 @Component({
@@ -13,13 +13,40 @@ import { GamesService } from 'src/app/services/games.service';
 })
 export class GamesPageComponent implements OnInit {
 
-  public games$!: Observable<any>
+  public games$!: Observable<Game[]>
+
+  public search = ''
+
+  public value!: number
+
+  public maxPrice!: number
+
+  public tags = GAMES_TAGS
+
+  public tagsForm: string[] = []
 
   constructor(private gameService: GamesService) {}
 
+  public log() {
+    console.log(this.value)
+    
+  }
+
+  change(event: Event) {
+    const target = (event.target as HTMLInputElement)
+    if(target.checked) {
+      this.tagsForm = [...this.tagsForm, target.value]
+    } else if(this.tagsForm.includes(target.value)) {
+      this.tagsForm = this.tagsForm.filter(item => item !== target.value)
+    }
+  }
+
   ngOnInit() {
     this.games$ = this.gameService.getAll()
-    console.log(this.games$.subscribe(console.log))
+    this.gameService.getMaxPrice().subscribe(value => {
+      this.value = value
+      this.maxPrice = value
+    })
   }
 
 

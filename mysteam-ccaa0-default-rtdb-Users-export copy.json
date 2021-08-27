@@ -1,0 +1,57 @@
+[
+  {
+    "username": "Alex",
+    "id": "0",
+    "email": "email@gmail.com",
+    "age": "",
+    "games": [1,2],
+    "friends": [5],
+    "invites": [3]
+  },
+  {
+    "username": "Gamer",
+    "id": "1",
+    "email": "email@email.com",
+    "age": "",
+    "games": [0,5],
+    "friends": [0,4],
+    "invites": []
+  },
+  {
+    "username": "Stalker",
+    "id": "2",
+    "email": "email@email.com",
+    "age": "",
+    "games": [4,1],
+    "friends": [0],
+    "invites": []
+  },
+  {
+    "username": "Dima",
+    "id": "3",
+    "email": "email@email.com",
+    "age": "",
+    "games": [5,0,4],
+    "friends": [5,4],
+    "invites": []
+  },
+  {
+    "username": "Victor",
+    "id": "4",
+    "email": "email@email.com",
+    "age": "",
+    "games": [2,5],
+    "friends": [3,1],
+    "invites": []
+  },
+  {
+    "username": "Stef",
+    "id": "5",
+    "email": "email@email.com",
+    "age": "",
+    "games": [5,4],
+    "friends": [3],
+    "invites": [0]
+  }
+  
+]

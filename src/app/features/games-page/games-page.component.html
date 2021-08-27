@@ -1,15 +1,43 @@
-<div *ngIf="games$ | async as games" class="card-wrap">
-    <div *ngFor="let game of games" class="card">
-        <h2> {{game.name}} </h2>
-        <div>
-            <img src="https://cdn.akamai.steamstatic.com/steam/apps/264710/header.jpg?t=1625546782">
-        </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate commodi sequi, repellendus quam
-            neque ad earum deserunt sed veniam id officiis soluta provident maiores excepturi ipsa quibusdam enim
-            eveniet?</p>
-            <div>
-                <button [disabled]="game.bought">Download</button>
-                <button>Shere</button>
-            </div>
+<div class="wrapper">
+    <div class="search-wrap">
+        <input type="text" [(ngModel)]="search" placeholder="Search by name">
     </div>
-</div>
+
+    <div class="container">
+        <div *ngIf="games$ | async as games" class="card-wrap">
+            <div *ngFor="let game of games | search:search | priceFilter:value | tagFilter:tagsForm" class="card">
+                <h2> {{game.name}} </h2>
+                <div>
+                    <img src={{game.icon}}>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate commodi sequi, repellendus
+                    quam
+                    neque ad earum deserunt sed veniam id officiis soluta provident maiores excepturi ipsa quibusdam
+                    enim
+                    eveniet?</p>
+                <div>
+                    <button [disabled]="game.bought">Download</button>
+                    <button>Shere</button>
+                </div>
+            </div>
+        </div>
+        <div class="filters">
+
+            <div class="slide-container">
+                <p>Filter by price</p>
+                <input type="range" min="1" [max]="maxPrice" [(ngModel)]="value" class="slider" id="myRange">
+
+                <small class="maxPrice">{{value === maxPrice ? 'any': value}}</small>
+            </div>
+            <div class="categories">
+                <p>Filter by tag</p>
+                <form>
+                    <div *ngFor="let tag of tags" class="category">
+                        <input id="{{tag}}" type="checkbox" name="category" value="{{tag}}" (input)="change($event)">
+                        <label for="{{tag}}">{{tag}}</label>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>

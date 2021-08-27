@@ -1,9 +1,44 @@
-.card-wrap {
+.search-wrap {
+    input {
+        padding: 0.5% 1%;
+        width: 90%;
+        background: linear-gradient(45deg, black, transparent);
+        border: none;
+        color: white;
+    }
+}
+
+.container{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin: 5%;
-    .card {
-        width: 460px;
+
+    .card-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 85%;
+        .card {
+            width: 460px;
+        }
+    }
+    .filters {
+        background: black;
+        width: 15%;
+        border-left: 1px solid white;
+        padding: 2%;
+        .slide-container {
+            display: flex;
+            flex-direction: column;
+            .maxPrice {
+                align-self: flex-end;
+            }
+        }
+    }
+    .categories {
+        .category{
+            margin: 10px 0;
+            label {
+                margin-left: 5px;
+            }
+        }
     }
 }
