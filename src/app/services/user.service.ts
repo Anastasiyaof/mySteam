@@ -40,4 +40,8 @@ export class UserService {
          })
       )
   }
+
+  updateUserData(userId: string, body: object) {
+    return this.http.patch(`${environment.firebase.dbUrl}/Users/${userId}.json`, body)
+  }
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Game } from 'src/app/models/game.model';
+import { User } from 'src/app/models/user.model';
 import { GamesService } from 'src/app/services/games.service';
+import { UserService } from 'src/app/services/user.service';
 import { GAMES_TAGS } from '../constants/constants';
 
 
@@ -15,6 +17,8 @@ export class GamesPageComponent implements OnInit {
 
   public games$!: Observable<Game[]>
 
+  public user$!: Observable<User>
+
   public search = ''
 
   public value!: number
@@ -25,7 +29,10 @@ export class GamesPageComponent implements OnInit {
 
   public tagsForm: string[] = []
 
-  constructor(private gameService: GamesService) {}
+  constructor(
+    private gameService: GamesService,
+    private userService: UserService
+    ) {}
 
   public log() {
     console.log(this.value)
@@ -41,13 +48,25 @@ export class GamesPageComponent implements OnInit {
     }
   }
 
+  addToLibrary(event: Event, gameId: number,user: User) {
+    let {games} = user
+    games = games?.concat(+gameId)
+    const userObj = {
+      ...user,
+      games
+    }
+    this.userService.updateUserData(user.id, userObj).subscribe(() =>
+      (event.target as HTMLButtonElement).disabled = true
+    )
+  }
+
   ngOnInit() {
     this.games$ = this.gameService.getAll()
+    this.user$ = this.userService.getUserData()
     this.gameService.getMaxPrice().subscribe(value => {
       this.value = value
       this.maxPrice = value
     })
   }
-
 
 }

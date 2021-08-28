@@ -15,8 +15,8 @@
                     neque ad earum deserunt sed veniam id officiis soluta provident maiores excepturi ipsa quibusdam
                     enim
                     eveniet?</p>
-                <div>
-                    <button [disabled]="game.bought">Download</button>
+                <div *ngIf="user$ | async as user">
+                    <button [disabled]="user.games?.includes(+game.id)" (click)="addToLibrary($event, game.id, user )">Download</button>
                     <button>Shere</button>
                 </div>
             </div>

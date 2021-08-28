@@ -1,40 +1,40 @@
 [ {
-  "id": "0",
+  "id": 0,
   "bought" : true,
   "icon" : "https://cdn.akamai.steamstatic.com/steam/apps/264710/header.jpg?t=1625546782",
   "name" : "Subnautica",
   "price" : "400",
   "tags" : [ "Survival", "Open World" ]
 }, {
-  "id": "1",
+  "id": 1,
   "bought" : false,
   "icon" : "https://cdn.akamai.steamstatic.com/steam/apps/750920/header.jpg?t=1617889764",
   "name" : "Shadow of the Tomb Raider",
   "price" : "1200",
   "tags" : [ "Adventure", "Action" ]
 }, {
-  "id": "2",
+  "id": 2,
   "bought" : true,
   "icon" : "https://cdn.akamai.steamstatic.com/steam/apps/546560/header.jpg?t=1626370761",
   "name" : "Half-Life: Alyx",
   "price" : "699",
   "tags" : [ "Action", "Horror", "Shooter" ]
 }, {
-  "id": "3",
+  "id": 3,
   "bought" : true,
   "icon" : "https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg?t=1601578341",
   "name" : "Left 4 Dead 2",
   "price" : "999",
   "tags" : [ "Zombies", "Horror", "Shooter" ]
 }, {
-  "id": "4",
+  "id": 4,
   "bought" : true,
   "icon" : "https://cdn.akamai.steamstatic.com/steam/apps/648350/header.jpg?t=1617973686",
   "name" : "Jurassic World Evolution",
   "price" : "1156",
   "tags" : [ "Simulation", "Building" ]
 }, {
-  "id": "5",
+  "id": 5,
   "bought" : true,
   "icon" : "https://cdn.akamai.steamstatic.com/steam/apps/418370/header.jpg?t=1610067869",
   "name" : "Resident Evil 7 Biohazard",

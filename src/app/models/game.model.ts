@@ -1,8 +1,8 @@
 export interface Game {
-    id: string,
+    id: number,
     name: string,
     bought: boolean,
     price: string,
-    tegs: string[],
+    tags: string[],
     icon?: string
 }

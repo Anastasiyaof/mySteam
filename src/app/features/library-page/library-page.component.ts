@@ -29,10 +29,8 @@ export class LibraryPageComponent implements OnInit {
   ngOnInit(): void {
     this.games$ = this.gameService.getAll().pipe(
       switchMap(games => {
-        console.log('inSwitch')
         return this.userService.getUserData().pipe(
           map(user => {
-            console.log('inMap')
             return [...games].filter(game => user.games?.includes(+game.id))
           })
         )

@@ -18,9 +18,12 @@
 
         <div>
             <h2>Invites</h2>
-            <div *ngIf="currentUser.invites else noInvites">
+            <div *ngIf="userInvites && userInvites.length > 0 else noInvites">
                 <div *ngFor="let user of users">
-                    <p *ngIf="userInvites.includes(+user.id)">{{user.username}}</p>
+                    <div *ngIf="userInvites.includes(+user.id)">
+                        <p>{{user.username}}</p>
+                        <button (click)="accept(+user.id)">Accept</button>
+                    </div>
                 </div>
             </div>
             <ng-template #noInvites>

@@ -8,7 +8,7 @@ export class TagFilterPipe implements PipeTransform {
 
   transform(games: Game[], tags:string[]): Game[] | undefined {
     return games.filter((game) => {
-      const match = tags.map((tag) => game.tegs.includes(tag))
+      const match = tags.map((tag) => game.tags.includes(tag))
       return match.every(elem => elem === true)
     }) 
   }

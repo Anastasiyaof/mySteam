@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -21,7 +21,23 @@ export class FriendsPageComponent implements OnInit {
 
   public search = ''
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+    ) { }
+
+  accept(friendId: number) {
+    this.userService.updateUserData(this.currentUser.id, {
+      friends: [...this.userFriends, friendId],
+      invites: this.userInvites.filter(invite => invite !== friendId)
+    }).subscribe(() => {
+      this.userInvites = this.userInvites.filter(invite => invite !== friendId)
+      this.userFriends = [...this.userFriends, friendId]
+    })
+    this.userService.updateUserData(String(friendId), {
+      friends: [...this.userFriends, +this.currentUser.id]
+    }).subscribe()
+  }
 
   ngOnInit(): void {
     this.route.data.subscribe(data => this.users = data.users)

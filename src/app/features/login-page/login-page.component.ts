@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
       if(params['authentication']) {
         this.infoMessage = 'Please sign in'
       } else if(params['authFailed']) {
-        this.infoMessage = 'Session expired. Please sign in '
+        this.infoMessage = 'Your session has expired. Please sign in again. '
       }
     })
     this.initForm()
