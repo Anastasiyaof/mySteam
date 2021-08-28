@@ -1,5 +1,6 @@
 <div *ngIf="games$ | async as games" class="card-wrap">
-    <div *ngIf="games.length > 0 else noGames"></div>
+    <div *ngIf="games.length > 0 else noGames">
+        <h1>My Games</h1>
     <div *ngFor="let game of games" class="card">
         <h2> {{game.name}} </h2>
         <div>
@@ -11,9 +12,11 @@
             enim
             eveniet?</p>
         <div>
+            <button>Download</button>
             <button>Shere</button>
         </div>
     </div>
+</div>
 </div>
 
 <ng-template #noGames>

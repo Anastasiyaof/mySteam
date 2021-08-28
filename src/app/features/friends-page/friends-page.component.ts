@@ -39,6 +39,28 @@ export class FriendsPageComponent implements OnInit {
     }).subscribe()
   }
 
+  invite(friendId: number) {
+    const friendData = this.users.filter(user => +user.id === friendId)[0]
+    this.userService.updateUserData(String(friendId), {
+      invites: friendData.invites ? friendData.invites.concat(+this.currentUser.id) : [+this.currentUser.id]
+    }).subscribe(() => {
+      this.users =  this.users.filter(user => !user.invites?.includes(+this.currentUser.id))
+    })
+  }
+
+  remove(friendId: number) {
+    const friendData = this.users.filter(user => +user.id === friendId)[0]
+    this.userService.updateUserData(this.currentUser.id, {
+      friends: this.userFriends.filter(id => id !== friendId)
+    }).subscribe(()=>{
+      this.userFriends = this.userFriends.filter(id => id !== friendId)
+    })
+    this.userService.updateUserData(String(friendId), {
+      friends: friendData.friends?.filter(id => id !== +this.currentUser.id)
+    }).subscribe()
+
+  }
+
   ngOnInit(): void {
     this.route.data.subscribe(data => this.users = data.users)
     this.route.data.pipe(map(data => {
@@ -46,6 +68,7 @@ export class FriendsPageComponent implements OnInit {
       this.userFriends = data.userData.friends
       this.userInvites = data.userData.invites
     })).subscribe()
+    console.log('i')
   }
 
 }

@@ -28,14 +28,28 @@ export class GamesService {
   }
 
   public getMaxPrice(): Observable<number> {
-    return this.getAll().pipe(
-      
+    return this.getAll().pipe( 
       map((games)=> {
       return games.reduce((maxPrice:number,game: Game) =>{
         if(+game.price > maxPrice) {
          maxPrice = +game.price
         }
         return maxPrice
+      },0)
+    })
+  )}
+
+  public getMinPrice(): Observable<number> {
+    return this.getAll().pipe( 
+      map((games)=> {
+      return games.reduce((minPrice:number,game: Game) =>{
+        if(minPrice === 0) {
+          minPrice = +game.price
+        }
+        if(+game.price < minPrice) {
+         minPrice = +game.price
+        }
+        return minPrice
       },0)
     })
   )}

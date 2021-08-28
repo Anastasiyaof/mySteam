@@ -18,7 +18,9 @@ const routes: Routes = [
   ]},
   {path: 'main', component: MainLayoutComponent, children: [
     {path: '', redirectTo: 'games', pathMatch: 'full'},
-    {path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuardService]},
+    {path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuardService], resolve: {
+      userData: UserDataResolver
+    }},
     {path: 'friends', component: FriendsPageComponent, canActivate: [AuthGuardService], resolve: {
       users: UsersResolver,
       userData: UserDataResolver

@@ -16,8 +16,12 @@
                     enim
                     eveniet?</p>
                 <div *ngIf="user$ | async as user">
-                    <button [disabled]="user.games?.includes(+game.id)" (click)="addToLibrary($event, game.id, user )">Download</button>
-                    <button>Shere</button>
+                    <button [disabled]="user.games?.includes(+game.id)"
+                     (click)="addToLibrary($event, game.id, user)" 
+                     #addBtn
+                     >
+                     {{addBtn.disabled ? 'In libruary' : 'Add to library'}}
+                    </button>
                 </div>
             </div>
         </div>
@@ -25,7 +29,7 @@
 
             <div class="slide-container">
                 <p>Filter by price</p>
-                <input type="range" min="1" [max]="maxPrice" [(ngModel)]="value" class="slider" id="myRange">
+                <input type="range" [min]="minPrice" [max]="maxPrice" [(ngModel)]="value" class="slider" id="myRange">
 
                 <small class="maxPrice">{{value === maxPrice ? 'any': value}}</small>
             </div>

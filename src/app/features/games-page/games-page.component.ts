@@ -4,6 +4,7 @@ import { Game } from 'src/app/models/game.model';
 import { User } from 'src/app/models/user.model';
 import { GamesService } from 'src/app/services/games.service';
 import { UserService } from 'src/app/services/user.service';
+import { AlertService } from 'src/app/shered/alert.service';
 import { GAMES_TAGS } from '../constants/constants';
 
 
@@ -24,6 +25,8 @@ export class GamesPageComponent implements OnInit {
   public value!: number
 
   public maxPrice!: number
+  
+  public minPrice!: number
 
   public tags = GAMES_TAGS
 
@@ -31,7 +34,8 @@ export class GamesPageComponent implements OnInit {
 
   constructor(
     private gameService: GamesService,
-    private userService: UserService
+    private userService: UserService,
+    private alertService: AlertService
     ) {}
 
   public log() {
@@ -58,6 +62,7 @@ export class GamesPageComponent implements OnInit {
     this.userService.updateUserData(user.id, userObj).subscribe(() =>
       (event.target as HTMLButtonElement).disabled = true
     )
+    this.alertService.success('Added')
   }
 
   ngOnInit() {
@@ -66,6 +71,9 @@ export class GamesPageComponent implements OnInit {
     this.gameService.getMaxPrice().subscribe(value => {
       this.value = value
       this.maxPrice = value
+    })
+    this.gameService.getMinPrice().subscribe(value => {
+      this.minPrice = value
     })
   }
 

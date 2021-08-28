@@ -20,6 +20,7 @@ import { PriceFilterPipe } from './pipes/price-filter.pipe';
 import { TagFilterPipe } from './pipes/tag-filter.pipe';
 import { FilterByIdPipe } from './pipes/filter-by-id.pipe';
 import { UserSearchPipe } from './pipes/user-search.pipe';
+import { AlertComponent } from './shered/alert/alert.component';
 
 const INTERSEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -40,7 +41,8 @@ const INTERSEPTOR_PROVIDER: Provider = {
     PriceFilterPipe,
     TagFilterPipe,
     FilterByIdPipe,
-    UserSearchPipe
+    UserSearchPipe,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

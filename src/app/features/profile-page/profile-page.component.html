@@ -1,1 +1,13 @@
-<p>profile-page works!</p>
+<div class="wrapper">
+    <div>
+        <h2>Profile</h2>
+        <form [formGroup]="profileForm">
+            <div *ngFor="let field of currentUser | keyvalue">
+                <label for="{{field.key}}">{{field.key}}</label>
+                <input id="{{field.key}}" type="text" formControlName="{{field.key}}">
+            </div>
+            <button (click)="submit()" [disabled]="!isChanged()">Confirm</button>
+        </form>
+    </div>
+
+</div>

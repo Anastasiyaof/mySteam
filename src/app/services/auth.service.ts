@@ -40,6 +40,19 @@ export class AuthService {
     return !!this.token
   }
 
+  updeteAuthEmail(newEmail: string) {
+    const body = {
+      idToken: this.token,
+      email: newEmail,
+      returnSecureToken: true
+    }
+    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${environment.firebase.apiKey}`, body)
+      .pipe(
+        tap(this.setToken),
+        catchError(this.hendleError.bind(this))
+      )
+  }
+
   private setToken(response: any ): void {
     if(response) {
       const expDate = new Date(new Date().getTime() + +response.expiresIn * 1000)
