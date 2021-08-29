@@ -20,9 +20,12 @@
                 <small>Password is required</small>
             </div>
         </div>
-        <button [disabled]='!loginForm.valid || submitted ' (click)="submit()">Sign in</button>
-
+        <div class="btn-wrap">
+            <button [disabled]='!loginForm.valid || submitted ' (click)="submit()">Sign in</button>
+        </div>
     </form>
-    <div *ngIf="auth.error$ | async as error">{{error}} </div>
-    <div *ngIf="infoMessage">{{infoMessage}} </div>
+    <div class="info">
+        <div *ngIf="auth.error$ | async as error">{{error}} </div>
+        <div *ngIf="infoMessage">{{infoMessage}} </div>
+    </div>
 </div>

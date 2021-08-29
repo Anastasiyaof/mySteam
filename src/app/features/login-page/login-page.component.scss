@@ -7,22 +7,34 @@
 
 .form-wrapp{
     width: 350px;
-    height: 30%;
     display: grid;
+    padding-bottom: 1%;
     justify-items: center;
-
+    background: black;
     form {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         padding: 5%;
         width: 100%;
-        background: black;
+        
         h2 {
             text-align: center;
         }
         .input-wrap {
             display: grid;
             width: 80%;
-            margin: 0 auto;
+            margin: 5px auto;
+            input {
+                padding: 10px;
+            }
+        }
+        .btn-wrap {
+            margin: 5%;
+            text-align: center;
+            button {
+                width: 60%;
+                padding: 10px;
+            }
         }
     }
     .invalid {
