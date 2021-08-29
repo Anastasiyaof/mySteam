@@ -11,9 +11,15 @@
 }
 
 .user-icon {
-    width: 6%;
+    display: flex;
     .icon {
         width: 65px;
+        margin-right: 25%;
+    }
+    .username {
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -32,29 +38,14 @@
     }
     .invites-wrap {
         flex-grow: 1;
-    
-    .invite-icon {
-        .icon {
-            width: 65px;
-        }
     }
     .invite-card{
         padding: 10px;
-        .card {
-            .username {
-                width: 50%;
-            }
-        }
     }
-}
     .card {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .username {
-            width: 80%;
-            font-size: 1.2rem;
-        }
     }
     .btn {
         padding: 10px;

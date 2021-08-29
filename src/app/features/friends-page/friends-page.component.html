@@ -15,8 +15,8 @@
                         <div class="card">
                             <div class="user-icon">
                                 <img class="icon" src="../../../assets/user.png">
+                                <div class="username">{{user.username}}</div>
                             </div>
-                            <div class="username">{{user.username}}</div>
                             <button class="btn" (click)="remove(user.id)">Remove Friend</button>
                         </div>
                     </div>
@@ -34,10 +34,10 @@
                 <div *ngFor="let user of users">
                     <div *ngIf="userInvites.includes(user.id)" class="invites-wrap">
                         <div class="card">
-                            <div class="invite-icon">
+                            <div class="user-icon">
                                 <img class="icon" src="../../../assets/user.png">
+                                <div class="username">{{user.username}}</div>
                             </div>
-                            <div class="username">{{user.username}}</div>
                             <button class="btn" (click)="accept(user.id)">Accept</button>
                         </div>
                     </div>
@@ -53,12 +53,12 @@
     <ng-template #searchFriends>
         <div class="search-block">
         <div *ngFor="let user of users | userSearch:search">
-            <div *ngIf="!currentUser.friends?.includes(user.id)" class="invite-card">
+            <div *ngIf="!currentUser.friends?.includes(user.id) && user.id !== currentUser.id" class="invite-card">
                 <div class="card">
-                    <div class="invite-icon">
+                    <div class="user-icon">
                         <img class="icon" src="../../../assets/user.png">
+                        <div class="username"> {{user.username}} </div>
                     </div>
-                    <div class="username"> {{user.username}} </div>
                     <button #invineBtn (click)="invite(user.id)" [disabled]="user.invites?.includes(currentUser.id)" class="btn">
                         {{invineBtn.disabled ? 'Invated' : 'Invite'}}
                     </button>
