@@ -1,13 +1,16 @@
 <div class="wrapper">
-    <div>
-        <h2>Profile</h2>
+    <div class="profile-wrap">
+        <div class="profile">
+        <h1>Profile</h1>
+
         <form [formGroup]="profileForm">
-            <div *ngFor="let field of currentUser | keyvalue">
+            <div *ngFor="let field of currentUser | keyvalue" class="field">
                 <label for="{{field.key}}">{{field.key}}</label>
                 <input id="{{field.key}}" type="text" formControlName="{{field.key}}">
             </div>
             <button (click)="submit()" [disabled]="!isChanged()">Confirm</button>
         </form>
+    </div>
     </div>
 
 </div>
