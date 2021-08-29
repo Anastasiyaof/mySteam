@@ -55,7 +55,10 @@ export class GamesPageComponent implements OnInit {
 
   addToLibrary(event: Event, gameId: string,user: User) {
     let {games} = user
-    games = games?.concat(String(gameId))
+    if(!games) {
+      games = []
+    }
+    games = games?.concat(gameId)
     const userObj = {
       ...user,
       games

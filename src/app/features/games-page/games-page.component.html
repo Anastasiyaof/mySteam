@@ -6,6 +6,7 @@
     <div class="container">
         <div *ngIf="games$ | async as games" class="card-wrap">
             <div *ngFor="let game of games | search:search | priceFilter:value | tagFilter:tagsForm" class="card">
+                <div *ngIf="games.length > 0 else noGames">
                 <h2> {{game.name}} </h2>
                 <div>
                     <img src={{game.icon}}>
@@ -15,14 +16,19 @@
                     neque ad earum deserunt sed veniam id officiis soluta provident maiores excepturi ipsa quibusdam
                     enim
                     eveniet?</p>
-                <div *ngIf="user$ | async as user">
-                    <button [disabled]="user.games?.includes(game.id+'')"
+                <div *ngIf="user$ | async as user" class="addBtn-wrap">
+                    <button class="addBtn" [disabled]="user.games?.includes(game.id+'')"
                      (click)="addToLibrary($event, game.id, user)" 
                      #addBtn
                      >
                      {{addBtn.disabled ? 'In libruary' : 'Add to library'}}
                     </button>
+                    <p>{{game.price}} &#8372;</p>
                 </div>
+            </div>
+            <ng-template #noGames>
+                <div><h3>Game by this criteria was`t found</h3></div>
+            </ng-template>
             </div>
         </div>
         <div class="filters">
