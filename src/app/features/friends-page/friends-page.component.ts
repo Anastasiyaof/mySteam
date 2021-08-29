@@ -11,11 +11,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class FriendsPageComponent implements OnInit {
 
-  public userFriends!: number[]
+  public userFriends!: string[]
 
   public users!: User[]
   
-  public userInvites!: number[]
+  public userInvites!: string[]
 
   public currentUser!: User
 
@@ -26,7 +26,7 @@ export class FriendsPageComponent implements OnInit {
     private userService: UserService
     ) { }
 
-  accept(friendId: number) {
+  accept(friendId: string) {
     this.userService.updateUserData(this.currentUser.id, {
       friends: [...this.userFriends, friendId],
       invites: this.userInvites.filter(invite => invite !== friendId)
@@ -34,29 +34,29 @@ export class FriendsPageComponent implements OnInit {
       this.userInvites = this.userInvites.filter(invite => invite !== friendId)
       this.userFriends = [...this.userFriends, friendId]
     })
-    this.userService.updateUserData(String(friendId), {
+    this.userService.updateUserData(friendId, {
       friends: [...this.userFriends, +this.currentUser.id]
     }).subscribe()
   }
 
-  invite(friendId: number) {
-    const friendData = this.users.filter(user => +user.id === friendId)[0]
+  invite(friendId: string) {
+    const friendData = this.users.filter(user => user.id === friendId)[0]
     this.userService.updateUserData(String(friendId), {
-      invites: friendData.invites ? friendData.invites.concat(+this.currentUser.id) : [+this.currentUser.id]
+      invites: friendData.invites ? friendData.invites.concat(this.currentUser.id) : [+this.currentUser.id]
     }).subscribe(() => {
-      this.users =  this.users.filter(user => !user.invites?.includes(+this.currentUser.id))
+      this.users =  this.users.filter(user => !user.invites?.includes(this.currentUser.id))
     })
   }
 
-  remove(friendId: number) {
-    const friendData = this.users.filter(user => +user.id === friendId)[0]
+  remove(friendId: string) {
+    const friendData = this.users.filter(user => user.id === friendId)[0]
     this.userService.updateUserData(this.currentUser.id, {
       friends: this.userFriends.filter(id => id !== friendId)
     }).subscribe(()=>{
       this.userFriends = this.userFriends.filter(id => id !== friendId)
     })
     this.userService.updateUserData(String(friendId), {
-      friends: friendData.friends?.filter(id => id !== +this.currentUser.id)
+      friends: friendData.friends?.filter(id => id !== this.currentUser.id)
     }).subscribe()
 
   }
@@ -68,7 +68,6 @@ export class FriendsPageComponent implements OnInit {
       this.userFriends = data.userData.friends
       this.userInvites = data.userData.invites
     })).subscribe()
-    console.log('i')
   }
 
 }

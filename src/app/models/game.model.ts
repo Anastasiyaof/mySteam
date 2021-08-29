@@ -1,5 +1,5 @@
 export interface Game {
-    id: number,
+    id: string,
     name: string,
     bought: boolean,
     price: string,

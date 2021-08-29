@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Game } from 'src/app/models/game.model';
 import { User } from 'src/app/models/user.model';
 import { GamesService } from 'src/app/services/games.service';
@@ -38,8 +39,8 @@ export class GamesPageComponent implements OnInit {
     private alertService: AlertService
     ) {}
 
-  public log() {
-    console.log(this.value)
+  public log(val: any) {
+    console.log(val)
     
   }
 
@@ -52,9 +53,9 @@ export class GamesPageComponent implements OnInit {
     }
   }
 
-  addToLibrary(event: Event, gameId: number,user: User) {
+  addToLibrary(event: Event, gameId: string,user: User) {
     let {games} = user
-    games = games?.concat(+gameId)
+    games = games?.concat(String(gameId))
     const userObj = {
       ...user,
       games
@@ -67,7 +68,23 @@ export class GamesPageComponent implements OnInit {
 
   ngOnInit() {
     this.games$ = this.gameService.getAll()
-    this.user$ = this.userService.getUserData()
+    this.user$ = this.userService.getUserData().pipe(
+      map((user)=>{
+        if(typeof user.games === "object") {
+          const games: string[] = []
+          Object.values(user.games).forEach(value => {
+            if(value != null) {
+              games.push(value)
+            }
+          })
+         return {
+           ...user,
+           games: games
+         } 
+        }
+        return user
+      })
+    )
     this.gameService.getMaxPrice().subscribe(value => {
       this.value = value
       this.maxPrice = value

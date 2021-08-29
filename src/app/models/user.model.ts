@@ -6,9 +6,9 @@ export interface User {
     username?: string,
     id: string,
     age?: string,
-    games?: number[],
-    friends?: number[],
-    invites?: number[]
+    games?: string[],
+    friends?: string[],
+    invites?: string[]
 }
 
 export interface FbAuthResponse {

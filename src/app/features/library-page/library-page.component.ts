@@ -31,7 +31,7 @@ export class LibraryPageComponent implements OnInit {
       switchMap(games => {
         return this.userService.getUserData().pipe(
           map(user => {
-            return [...games].filter(game => user.games?.includes(+game.id))
+            return [...games].filter(game => user.games?.includes(String(game.id)))
           })
         )
       })

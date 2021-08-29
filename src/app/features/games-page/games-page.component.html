@@ -16,7 +16,7 @@
                     enim
                     eveniet?</p>
                 <div *ngIf="user$ | async as user">
-                    <button [disabled]="user.games?.includes(+game.id)"
+                    <button [disabled]="user.games?.includes(game.id+'')"
                      (click)="addToLibrary($event, game.id, user)" 
                      #addBtn
                      >
