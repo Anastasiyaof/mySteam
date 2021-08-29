@@ -1,3 +1,6 @@
+h1 {
+    text-align: center;
+}
 .wrapper {
     height: 80vh;
     display: flex;
@@ -9,10 +12,27 @@
         background: black;
         display: flex;
         justify-content: center;
+        .profile {
+            width: 70%;
+            .field {
+                display: flex;
+                flex-direction: column;
+            }
+            .btn-wrap {
+                display: flex;
+                justify-content: center;
+                margin: 10%;
+                button {
+                    padding: 10px;
+                }
+            }
+        }
     }
-    .field {
-        display: flex;
-        flex-direction: column;
+    
+
+    input {
+        padding: 7px;
+        margin: 10px 0;
     }
 }
 

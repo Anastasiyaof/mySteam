@@ -5,10 +5,12 @@
 
         <form [formGroup]="profileForm">
             <div *ngFor="let field of currentUser | keyvalue" class="field">
-                <label for="{{field.key}}">{{field.key}}</label>
+                <label for="{{field.key}}">{{field.key | titlecase}}</label>
                 <input id="{{field.key}}" type="text" formControlName="{{field.key}}">
             </div>
-            <button (click)="submit()" [disabled]="!isChanged()">Confirm</button>
+            <div class="btn-wrap">
+                <button (click)="submit()" [disabled]="!isChanged()" class="btn">Confirm</button>
+            </div>
         </form>
     </div>
     </div>

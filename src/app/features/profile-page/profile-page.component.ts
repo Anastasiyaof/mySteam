@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/models/user.model';
@@ -35,8 +35,8 @@ export class ProfilePageComponent implements OnInit {
 
   initForm() {
     this.profileForm = new FormGroup({
-      username: new FormControl(`${this.currentUser.username}`),
-      email: new FormControl(`${this.currentUser.email}`),
+      username: new FormControl(`${this.currentUser.username}`, [Validators.required]),
+      email: new FormControl(`${this.currentUser.email}`, [Validators.required,Validators.email]),
       age: new FormControl(`${this.currentUser.age}`)
     })
   }
@@ -46,11 +46,12 @@ export class ProfilePageComponent implements OnInit {
       this.profileForm.value.email !== this.currentUser.email ||
       this.profileForm.value.age !== this.currentUser.age ||
       this.profileForm.value.username !== this.currentUser.username
-    return changed
+    return changed && this.profileForm.valid
   }
 
   submit() {
-    let updates = {...this.profileForm.value}
+    console.log(this.profileForm)
+    /* let updates = {...this.profileForm.value}
     if(this.profileForm.value.email !== this.currentUser.email) {
       this.authService.updeteAuthEmail(updates.email).subscribe(()=>
         this.authService.logout()
@@ -59,7 +60,7 @@ export class ProfilePageComponent implements OnInit {
       let {email, ...rest} = updates
       updates = rest
     }
-    this.userService.updateUserData(this.userId, updates).subscribe()
+    this.userService.updateUserData(this.userId, updates).subscribe() */
   }
 
   ngOnInit(): void {
