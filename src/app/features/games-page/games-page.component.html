@@ -1,53 +1,76 @@
 <div class="wrapper">
-    <div class="search-wrap">
-        <input type="text" [(ngModel)]="search" placeholder="Search by name">
-    </div>
+  <div class="search-wrap">
+    <input type="text" [(ngModel)]="search" placeholder="Search by name" />
+  </div>
 
-    <div class="container">
-        <div *ngIf="games$ | async as games" class="card-wrap">
-            <div *ngFor="let game of games | search:search | priceFilter:value | tagFilter:tagsForm" class="card">
-                <div *ngIf="games.length > 0 else noGames">
-                <h2> {{game.name}} </h2>
-                <div>
-                    <img src={{game.icon}}>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate commodi sequi, repellendus
-                    quam
-                    neque ad earum deserunt sed veniam id officiis soluta provident maiores excepturi ipsa quibusdam
-                    enim
-                    eveniet?</p>
-                <div *ngIf="user$ | async as user" class="addBtn-wrap">
-                    <button class="addBtn" [disabled]="user.games?.includes(game.id+'')"
-                     (click)="addToLibrary($event, game.id, user)" 
-                     #addBtn
-                     >
-                     {{addBtn.disabled ? 'In library' : 'Add to library'}}
-                    </button>
-                    <p>{{game.price}} &#8372;</p>
-                </div>
-            </div>
-            <ng-template #noGames>
-                <div><h3>Game by this criteria was`t found</h3></div>
-            </ng-template>
-            </div>
+  <div class="container">
+    <div *ngIf="games$ | async as games" class="card-wrap">
+      <div
+        *ngFor="
+          let game of games
+            | search: search
+            | priceFilter: value
+            | tagFilter: tagsForm
+        "
+        class="card"
+      >
+        <div *ngIf="games.length > 0; else noGames">
+          <h2>{{ game.name }}</h2>
+          <div>
+            <img src="{{ game.icon }}" />
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+            voluptate commodi sequi, repellendus quam neque ad earum deserunt
+            sed veniam id officiis soluta provident maiores excepturi ipsa
+            quibusdam enim eveniet?
+          </p>
+          <div *ngIf="user$ | async as user" class="addBtn-wrap">
+            <button
+              class="addBtn"
+              [disabled]="user.games?.includes(game.id + '')"
+              (click)="addToLibrary($event, game.id, user)"
+              #addBtn
+            >
+              {{ addBtn.disabled ? "In library" : "Add to library" }}
+            </button>
+            <p>{{ game.price }} &#8372;</p>
+          </div>
         </div>
-        <div class="filters">
-
-            <div class="slide-container">
-                <p>Filter by price</p>
-                <input type="range" [min]="minPrice" [max]="maxPrice" [(ngModel)]="value" class="slider" id="myRange">
-
-                <small class="maxPrice">{{value === maxPrice ? 'any': value}}</small>
-            </div>
-            <div class="categories">
-                <p>Filter by tag</p>
-                <form>
-                    <div *ngFor="let tag of tags" class="category">
-                        <input id="{{tag}}" type="checkbox" name="category" value="{{tag}}" (input)="change($event)">
-                        <label for="{{tag}}">{{tag}}</label>
-                    </div>
-                </form>
-            </div>
-
-        </div>
+        <ng-template #noGames>
+          <div><h3>Game by this criteria was`t found</h3></div>
+        </ng-template>
+      </div>
     </div>
+    <div class="filters">
+      <div class="slide-container">
+        <p>Filter by price</p>
+        <input
+          type="range"
+          [min]="minPrice"
+          [max]="maxPrice"
+          [(ngModel)]="value"
+          class="slider"
+          id="myRange"
+        />
+
+        <small class="maxPrice">{{ value === maxPrice ? "any" : value }}</small>
+      </div>
+      <div class="categories">
+        <p>Filter by tag</p>
+        <form>
+          <div *ngFor="let tag of tags" class="category">
+            <input
+              id="{{ tag }}"
+              type="checkbox"
+              name="category"
+              value="{{ tag }}"
+              (input)="change($event)"
+            />
+            <label for="{{ tag }}">{{ tag }}</label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

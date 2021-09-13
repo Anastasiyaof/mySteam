@@ -1,18 +1,23 @@
 <div class="wrapper">
-    <div class="profile-wrap">
-        <div class="profile">
-        <h1>Profile</h1>
+  <div class="profile-wrap">
+    <div class="profile">
+      <h1>Profile</h1>
 
-        <form [formGroup]="profileForm">
-            <div *ngFor="let field of currentUser | keyvalue" class="field">
-                <label for="{{field.key}}">{{field.key | titlecase}}</label>
-                <input id="{{field.key}}" type="text" formControlName="{{field.key}}">
-            </div>
-            <div class="btn-wrap">
-                <button (click)="submit()" [disabled]="!isChanged()" class="btn">Confirm</button>
-            </div>
-        </form>
+      <form [formGroup]="profileForm">
+        <div *ngFor="let field of currentUser | keyvalue" class="field">
+          <label for="{{ field.key }}">{{ field.key | titlecase }}</label>
+          <input
+            id="{{ field.key }}"
+            type="text"
+            formControlName="{{ field.key }}"
+          />
+        </div>
+        <div class="btn-wrap">
+          <button (click)="submit()" [disabled]="!isChanged()" class="btn">
+            Confirm
+          </button>
+        </div>
+      </form>
     </div>
-    </div>
-
+  </div>
 </div>

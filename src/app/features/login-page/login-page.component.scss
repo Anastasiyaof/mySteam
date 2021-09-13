@@ -1,43 +1,43 @@
 :host {
-    display: grid;
-    height: 100vh;
-    place-items: center;
-    --invalid-color: red;
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  --invalid-color: red;
 }
 
-.form-wrapp{
-    width: 350px;
-    display: grid;
-    padding-bottom: 1%;
-    justify-items: center;
-    background: black;
-    form {
-        display: flex;
-        flex-direction: column;
-        padding: 5%;
-        width: 100%;
-        
-        h2 {
-            text-align: center;
-        }
-        .input-wrap {
-            display: grid;
-            width: 80%;
-            margin: 5px auto;
-            input {
-                padding: 10px;
-            }
-        }
-        .btn-wrap {
-            margin: 5%;
-            text-align: center;
-            button {
-                width: 60%;
-                padding: 10px;
-            }
-        }
+.form-wrapp {
+  width: 350px;
+  display: grid;
+  padding-bottom: 1%;
+  justify-items: center;
+  background: black;
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    width: 100%;
+
+    h2 {
+      text-align: center;
     }
-    .invalid {
-        color: var(--invalid-color)
+    .input-wrap {
+      display: grid;
+      width: 80%;
+      margin: 5px auto;
+      input {
+        padding: 10px;
+      }
     }
+    .btn-wrap {
+      margin: 5%;
+      text-align: center;
+      button {
+        width: 60%;
+        padding: 10px;
+      }
+    }
+  }
+  .invalid {
+    color: var(--invalid-color);
+  }
 }

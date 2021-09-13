@@ -1,71 +1,85 @@
 <div class="wrapper">
-    <h2>{{currentUser.username}}</h2>
+  <h2>{{ currentUser.username }}</h2>
 
-    <hr>
+  <hr />
 
-    <div class="search-wrap">
-        <input type="search" placeholder="Search for new friends" [(ngModel)]="search">
-    </div>
-    <div *ngIf="!search.trim() else searchFriends" class="content-wrap">
-        <div class="friends-wrap">
-            <h2>Friends</h2>
-            <div *ngIf="userFriends && userFriends.length > 0 else noFriends" class="friends">
-                <div *ngFor="let user of users">
-                    <div *ngIf="userFriends.includes(user.id)" class="friend-card">
-                        <div class="card">
-                            <div class="user-icon">
-                                <img class="icon" src="../../../assets/user.png">
-                                <div class="username">{{user.username}}</div>
-                            </div>
-                            <button class="btn" (click)="remove(user.id)">Remove Friend</button>
-                        </div>
-                    </div>
-
-                </div>
+  <div class="search-wrap">
+    <input
+      type="search"
+      placeholder="Search for new friends"
+      [(ngModel)]="search"
+    />
+  </div>
+  <div *ngIf="!search.trim(); else searchFriends" class="content-wrap">
+    <div class="friends-wrap">
+      <h2>Friends</h2>
+      <div
+        *ngIf="userFriends && userFriends.length > 0; else noFriends"
+        class="friends"
+      >
+        <div *ngFor="let user of users">
+          <div *ngIf="userFriends.includes(user.id)" class="friend-card">
+            <div class="card">
+              <div class="user-icon">
+                <img class="icon" src="../../../assets/user.png" />
+                <div class="username">{{ user.username }}</div>
+              </div>
+              <button class="btn" (click)="remove(user.id)">
+                Remove Friend
+              </button>
             </div>
-            <ng-template #noFriends>
-                <p>You haven't invited friends yet</p>
-            </ng-template>
+          </div>
         </div>
-
-        <div class="invites-wrap">
-            <h2>Invites</h2>
-            <div *ngIf="userInvites && userInvites.length > 0 else noInvites">
-                <div *ngFor="let user of users">
-                    <div *ngIf="userInvites.includes(user.id)" class="invites-wrap">
-                        <div class="card">
-                            <div class="user-icon">
-                                <img class="icon" src="../../../assets/user.png">
-                                <div class="username">{{user.username}}</div>
-                            </div>
-                            <button class="btn" (click)="accept(user.id)">Accept</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <ng-template #noInvites>
-                <p>No new invites</p>
-            </ng-template>
-
-        </div>
+      </div>
+      <ng-template #noFriends>
+        <p>You haven't invited friends yet</p>
+      </ng-template>
     </div>
 
-    <ng-template #searchFriends>
-        <div class="search-block">
-        <div *ngFor="let user of users | userSearch:search">
-            <div *ngIf="!currentUser.friends?.includes(user.id) && user.id !== currentUser.id" class="invite-card">
-                <div class="card">
-                    <div class="user-icon">
-                        <img class="icon" src="../../../assets/user.png">
-                        <div class="username"> {{user.username}} </div>
-                    </div>
-                    <button #invineBtn (click)="invite(user.id)" [disabled]="user.invites?.includes(currentUser.id)" class="btn">
-                        {{invineBtn.disabled ? 'Invated' : 'Invite'}}
-                    </button>
-                </div>
+    <div class="invites-wrap">
+      <h2>Invites</h2>
+      <div *ngIf="userInvites && userInvites.length > 0; else noInvites">
+        <div *ngFor="let user of users">
+          <div *ngIf="userInvites.includes(user.id)" class="invites-wrap">
+            <div class="card">
+              <div class="user-icon">
+                <img class="icon" src="../../../assets/user.png" />
+                <div class="username">{{ user.username }}</div>
+              </div>
+              <button class="btn" (click)="accept(user.id)">Accept</button>
             </div>
+          </div>
         </div>
-        </div>
-    </ng-template>
+      </div>
+      <ng-template #noInvites>
+        <p>No new invites</p>
+      </ng-template>
+    </div>
+  </div>
 
+  <ng-template #searchFriends>
+    <div class="search-block">
+      <div *ngFor="let user of users | userSearch: search">
+        <div
+          *ngIf="!userFriends.includes(user.id) && user.id !== currentUser.id"
+          class="invite-card"
+        >
+          <div class="card">
+            <div class="user-icon">
+              <img class="icon" src="../../../assets/user.png" />
+              <div class="username">{{ user.username }}</div>
+            </div>
+            <button
+              #inviteBtn
+              (click)="invite(user.id)"
+              [disabled]="user.invites?.includes(currentUser.id)"
+              class="btn"
+            >
+              {{ inviteBtn.disabled ? "Invited" : "Invite" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>

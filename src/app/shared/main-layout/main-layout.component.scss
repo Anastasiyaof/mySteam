@@ -1,0 +1,35 @@
+:host {
+  width: 100%;
+  display: block;
+}
+.mainHeader {
+  background: #171a21;
+  background-position: center top;
+  min-width: 940px;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 1px 8px black;
+
+  nav {
+    box-sizing: content-box;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 10%;
+  }
+
+  a {
+    color: #b8b6b4;
+    &:hover {
+      color: white;
+    }
+  }
+  .logo {
+    width: 150px;
+  }
+  .active {
+    color: white;
+  }
+}

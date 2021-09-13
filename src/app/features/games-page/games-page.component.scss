@@ -1,77 +1,77 @@
 .search-wrap {
-    input {
-        padding: 0.5% 1%;
-        width: 98%;
-        background: linear-gradient(45deg, black, transparent);
-        border: none;
-        color: white;
-        outline: none;
-        font-size: 1rem;
-    }
+  input {
+    padding: 0.5% 1%;
+    width: 98%;
+    background: linear-gradient(45deg, black, transparent);
+    border: none;
+    color: white;
+    outline: none;
+    font-size: 1rem;
+  }
 }
 
-.container{
-    position: relative;
-    display: flex;
-    min-width: 800px;
-    width: 100%;
-    margin-top: 15px;
-    overflow: hidden;
+.container {
+  position: relative;
+  display: flex;
+  min-width: 800px;
+  width: 100%;
+  margin-top: 15px;
+  overflow: hidden;
 
-    .card-wrap {
+  .card-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 90%;
+    align-items: flex-start;
+    align-content: baseline;
+    .card {
+      width: 460px;
+      box-shadow: 0 6px 12px black;
+      margin: 10px 0;
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 1.4);
+      .addBtn-wrap {
+        padding: 10px;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        width: 90%;
-        align-items: flex-start;
-        align-content: baseline;
-        .card {
-            width: 460px;
-            box-shadow: 0 6px 12px black;
-            margin: 10px 0;
-            padding: 15px;
-            background-color: rgba(0,0,0,1.4);
-            .addBtn-wrap {
-                padding: 10px;
-                display: flex;
-                justify-content: space-between;
-                .addBtn {
-                    padding: 10px;
-                    border: none;
-                    border-radius: 3px;
-                    background-color: #0075ff;
-                    color: white;
-                    font-size: 15px;
-                    cursor: pointer;
-                    min-width: 108px;
-                    &:disabled {
-                        cursor: not-allowed;
-                        color: black;
-                        background-color: #2144b5ba;
-                    }
-                }
-            }
+        justify-content: space-between;
+        .addBtn {
+          padding: 10px;
+          border: none;
+          border-radius: 3px;
+          background-color: #0075ff;
+          color: white;
+          font-size: 15px;
+          cursor: pointer;
+          min-width: 108px;
+          &:disabled {
+            cursor: not-allowed;
+            color: black;
+            background-color: #2144b5ba;
+          }
         }
+      }
     }
-    .filters {
-        background: black;
-        min-height: 1000px;
-        border-left: 1px solid white;
-        padding: 2%;
-        .slide-container {
-            display: flex;
-            flex-direction: column;
-            .maxPrice {
-                align-self: flex-end;
-            }
-        }
+  }
+  .filters {
+    background: black;
+    min-height: 1000px;
+    border-left: 1px solid white;
+    padding: 2%;
+    .slide-container {
+      display: flex;
+      flex-direction: column;
+      .maxPrice {
+        align-self: flex-end;
+      }
     }
-    .categories {
-        .category{
-            margin: 10px 0;
-            label {
-                margin-left: 5px;
-            }
-        }
+  }
+  .categories {
+    .category {
+      margin: 10px 0;
+      label {
+        margin-left: 5px;
+      }
     }
+  }
 }

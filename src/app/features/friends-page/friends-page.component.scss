@@ -1,67 +1,67 @@
 .search-wrap {
-    input {
-        padding: 0.5% 1%;
-        width: 98%;
-        background: linear-gradient(45deg, black, transparent);
-        border: none;
-        color: white;
-        outline: none;
-        font-size: 1rem;
-    }
+  input {
+    padding: 0.5% 1%;
+    width: 98%;
+    background: linear-gradient(45deg, black, transparent);
+    border: none;
+    color: white;
+    outline: none;
+    font-size: 1rem;
+  }
 }
 
 .user-icon {
+  display: flex;
+  .icon {
+    width: 65px;
+    margin-right: 25%;
+  }
+  .username {
+    font-size: 1.2rem;
     display: flex;
-    .icon {
-        width: 65px;
-        margin-right: 25%;
-    }
-    .username {
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
-    }
+    align-items: center;
+  }
 }
 
-.content-wrap{
-    display: flex;
-    margin: 0 2%;
+.content-wrap {
+  display: flex;
+  margin: 0 2%;
 }
-    .friends-wrap {
-        flex-grow: 3;
-        .friend-card {
-            background: linear-gradient(45deg, black, transparent);;
-            padding: 10px;
-            margin-right: 3%;
-            margin-bottom: 2%;
-        }
-    }
-    .invites-wrap {
-        flex-grow: 1;
-    }
-    .invite-card{
-        padding: 10px;
-    }
-    .card {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .btn {
-        padding: 10px;
-        border: none;
-        border-radius: 3px;
-        background-color: #0075ff;
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-        min-width: 108px;
-        &:disabled {
-            cursor: not-allowed;
-            color: black;
-            background-color: #2144b5ba;
-        }
-    }
-    .search-block {
-        width: 30%
-    }
+.friends-wrap {
+  flex-grow: 3;
+  .friend-card {
+    background: linear-gradient(45deg, black, transparent);
+    padding: 10px;
+    margin-right: 3%;
+    margin-bottom: 2%;
+  }
+}
+.invites-wrap {
+  flex-grow: 1;
+}
+.invite-card {
+  padding: 10px;
+}
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #0075ff;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  min-width: 108px;
+  &:disabled {
+    cursor: not-allowed;
+    color: black;
+    background-color: #2144b5ba;
+  }
+}
+.search-block {
+  width: 30%;
+}

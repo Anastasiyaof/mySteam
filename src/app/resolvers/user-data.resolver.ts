@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
+  Resolve,
   RouterStateSnapshot,
-  ActivatedRouteSnapshot
+  ActivatedRouteSnapshot,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { UserService } from '../services/user.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserDataResolver implements Resolve<boolean> {
-
   constructor(private userService: UserService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return  this.userService.getUserData()
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<any> {
+    return this.userService.getUserData();
   }
 }

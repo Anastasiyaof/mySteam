@@ -11,22 +11,22 @@ import { LoginPageComponent } from './features/login-page/login-page.component';
 import { ProfilePageComponent } from './features/profile-page/profile-page.component';
 import { FriendsPageComponent } from './features/friends-page/friends-page.component';
 import { GamesPageComponent } from './features/games-page/games-page.component';
-import { MainLayoutComponent } from './shered/main-layout/main-layout.component';
+import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 import { LibraryPageComponent } from './features/library-page/library-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './shered/auth.interceptor';
+import { AuthInterceptor } from './shared/auth.interceptor';
 import { SearchPipe } from './pipes/search.pipe';
 import { PriceFilterPipe } from './pipes/price-filter.pipe';
 import { TagFilterPipe } from './pipes/tag-filter.pipe';
 import { FilterByIdPipe } from './pipes/filter-by-id.pipe';
 import { UserSearchPipe } from './pipes/user-search.pipe';
-import { AlertComponent } from './shered/alert/alert.component';
+import { AlertComponent } from './shared/alert/alert.component';
 
 const INTERSEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
-  useClass: AuthInterceptor
-}
+  useClass: AuthInterceptor,
+};
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ const INTERSEPTOR_PROVIDER: Provider = {
     TagFilterPipe,
     FilterByIdPipe,
     UserSearchPipe,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +51,9 @@ const INTERSEPTOR_PROVIDER: Provider = {
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [INTERSEPTOR_PROVIDER],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

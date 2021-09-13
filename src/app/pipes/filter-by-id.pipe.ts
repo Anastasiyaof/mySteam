@@ -3,16 +3,14 @@ import { Game } from '../models/game.model';
 import { User } from '../models/user.model';
 
 @Pipe({
-  name: 'filterById'
+  name: 'filterById',
 })
 export class FilterByIdPipe implements PipeTransform {
-
   transform(value: Game[], ids: number[] | undefined): Game[] | void {
-    if(ids) {
+    if (ids) {
       return value.filter((val: Game) => {
-        return ids.includes(+val.id)
-       }) 
+        return ids.includes(+val.id);
+      });
     }
   }
-
 }

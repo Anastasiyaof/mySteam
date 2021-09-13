@@ -1,27 +1,28 @@
 <div class="wrapper">
-    <h1>My Games</h1>
-<div *ngIf="games$ | async as games" class="container">
-    <div *ngIf="games.length > 0 else noGames" class="card-wrap">
-    <div *ngFor="let game of games" class="card">
-        <h2> {{game.name}} </h2>
+  <h1>My Games</h1>
+  <div *ngIf="games$ | async as games" class="container">
+    <div *ngIf="games.length > 0; else noGames" class="card-wrap">
+      <div *ngFor="let game of games" class="card">
+        <h2>{{ game.name }}</h2>
         <div>
-            <img src={{game.icon}}>
+          <img src="{{ game.icon }}" />
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptate commodi sequi, repellendus
-            quam
-            neque ad earum deserunt sed veniam id officiis soluta provident maiores excepturi ipsa quibusdam
-            enim
-            eveniet?</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+          voluptate commodi sequi, repellendus quam neque ad earum deserunt sed
+          veniam id officiis soluta provident maiores excepturi ipsa quibusdam
+          enim eveniet?
+        </p>
         <div class="btn-wrap">
-            <button class="btn">Download</button>
-            <button class="btn">Shere</button>
+          <button class="btn">Download</button>
+          <button class="btn">Shere</button>
         </div>
+      </div>
     </div>
-</div>
-</div>
+  </div>
 
-<ng-template #noGames>
+  <ng-template #noGames>
     <p>You did`t add any game to your library :(</p>
     <button (click)="toGamesPage()">Choose some</button>
-</ng-template>
+  </ng-template>
 </div>

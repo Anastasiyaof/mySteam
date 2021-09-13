@@ -1,38 +1,36 @@
 h1 {
-    text-align: center;
+  text-align: center;
 }
 .wrapper {
-    height: 80vh;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .profile-wrap {
+    width: 400px;
+    height: 400px;
+    background: black;
     display: flex;
     justify-content: center;
-    align-items: center;
-    .profile-wrap {
-        width: 400px;
-        height: 400px;
-        background: black;
+    .profile {
+      width: 70%;
+      .field {
+        display: flex;
+        flex-direction: column;
+      }
+      .btn-wrap {
         display: flex;
         justify-content: center;
-        .profile {
-            width: 70%;
-            .field {
-                display: flex;
-                flex-direction: column;
-            }
-            .btn-wrap {
-                display: flex;
-                justify-content: center;
-                margin: 10%;
-                button {
-                    padding: 10px;
-                }
-            }
+        margin: 10%;
+        button {
+          padding: 10px;
         }
+      }
     }
-    
+  }
 
-    input {
-        padding: 7px;
-        margin: 10px 0;
-    }
+  input {
+    padding: 7px;
+    margin: 10px 0;
+  }
 }
-

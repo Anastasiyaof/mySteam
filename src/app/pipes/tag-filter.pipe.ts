@@ -2,15 +2,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Game } from '../models/game.model';
 
 @Pipe({
-  name: 'tagFilter'
+  name: 'tagFilter',
 })
 export class TagFilterPipe implements PipeTransform {
-
-  transform(games: Game[], tags:string[]): Game[] | undefined {
+  transform(games: Game[], tags: string[]): Game[] | undefined {
     return games.filter((game) => {
-      const match = tags.map((tag) => game.tags.includes(tag))
-      return match.every(elem => elem === true)
-    }) 
+      const match = tags.map((tag) => game.tags.includes(tag));
+      return match.every((elem) => elem === true);
+    });
   }
-
 }

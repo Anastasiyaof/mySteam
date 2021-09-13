@@ -9,31 +9,55 @@ import { ProfilePageComponent } from './features/profile-page/profile-page.compo
 import { UserDataResolver } from './resolvers/user-data.resolver';
 import { UsersResolver } from './resolvers/users.resolver';
 import { AuthGuardService } from './services/auth-guard.service';
-import { MainLayoutComponent } from './shered/main-layout/main-layout.component';
+import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
 
 const routes: Routes = [
-  {path: '', component: AppComponent, children: [
-    {path: '', redirectTo: 'login', pathMatch: 'full'},
-    {path: 'login', component: LoginPageComponent},
-  ]},
-  {path: 'main', component: MainLayoutComponent, children: [
-    {path: '', redirectTo: 'games', pathMatch: 'full'},
-    {path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuardService], resolve: {
-      userData: UserDataResolver
-    }},
-    {path: 'friends', component: FriendsPageComponent, canActivate: [AuthGuardService], resolve: {
-      users: UsersResolver,
-      userData: UserDataResolver
-    }},
-    {path: 'games', component: GamesPageComponent, canActivate: [AuthGuardService]},
-    {path: 'library', component: LibraryPageComponent, canActivate: [AuthGuardService]}
-  ]},
-  
-  
+  {
+    path: '',
+    component: AppComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginPageComponent },
+    ],
+  },
+  {
+    path: 'main',
+    component: MainLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'games', pathMatch: 'full' },
+      {
+        path: 'profile',
+        component: ProfilePageComponent,
+        canActivate: [AuthGuardService],
+        resolve: {
+          userData: UserDataResolver,
+        },
+      },
+      {
+        path: 'friends',
+        component: FriendsPageComponent,
+        canActivate: [AuthGuardService],
+        resolve: {
+          users: UsersResolver,
+          userData: UserDataResolver,
+        },
+      },
+      {
+        path: 'games',
+        component: GamesPageComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'library',
+        component: LibraryPageComponent,
+        canActivate: [AuthGuardService],
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -7,41 +7,46 @@ import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  constructor(public http: HttpClient, public auth: AuthService) { }
+  constructor(public http: HttpClient, public auth: AuthService) {}
 
   getAll(): Observable<User[]> {
-    return this.http.get(`${environment.firebase.dbUrl}/Users.json`)
-      .pipe(
-        map((objInd: { [key: string]: any }) => {
-          return Object.keys(objInd).map(key => {
-            return {
-              ...objInd[key],
-              id: key
-            }
-          })
-        })
-      )
+    return this.http.get(`${environment.firebase.dbUrl}/Users.json`).pipe(
+      map((objInd: { [key: string]: any }) => {
+        return Object.keys(objInd).map((key) => {
+          return {
+            ...objInd[key],
+            id: key,
+          };
+        });
+      })
+    );
   }
 
   getUserData() {
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${environment.firebase.apiKey}`, { idToken: this.auth.token})
-      .pipe(
-        map((res:{[key:string]: any}) => res.users[0].email),
-        switchMap( email => {
-          return this.getAll().pipe (
-            map(users => {
-              return [...users].filter(user => user.email === email)[0]
-            })
-           )
-         })
+    return this.http
+      .post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${environment.firebase.apiKey}`,
+        { idToken: this.auth.token }
       )
+      .pipe(
+        map((res: { [key: string]: any }) => res.users[0].email),
+        switchMap((email) => {
+          return this.getAll().pipe(
+            map((users) => {
+              return [...users].filter((user) => user.email === email)[0];
+            })
+          );
+        })
+      );
   }
 
   updateUserData(userId: string, body: object) {
-    return this.http.patch(`${environment.firebase.dbUrl}/Users/${userId}.json`, body)
+    return this.http.patch(
+      `${environment.firebase.dbUrl}/Users/${userId}.json`,
+      body
+    );
   }
 }
